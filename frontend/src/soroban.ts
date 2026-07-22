@@ -8,7 +8,7 @@ import {
 } from '@stellar/stellar-sdk';
 import { signTransaction } from '@stellar/freighter-api';
 
-export const CONTRACT_ID = 'CDHZOCLC7IK25AW2OTP7BT7ZT6F3TJ5BH5O4IVP7WFTVGWEYOD4VUCWD';
+export const CONTRACT_ID = 'CCI4FQ5H65E2ITZOEJZ5J2W2NI3ZLS647ME2GTIEUNCXZ7UY5PEDDCUS';
 export const RPC_URL = 'https://soroban-testnet.stellar.org';
 export const NETWORK_PASSPHRASE = Networks.TESTNET;
 
