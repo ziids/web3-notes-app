@@ -23,6 +23,44 @@ impl NotesContract {
         return env.storage().instance().get(&NOTE_DATA).unwrap_or(Vec::new(&env));
     }
 
+    // Fungsi untuk mengubah note berdasarkan id
+    pub fn update_note(env: Env, id: u64, title: String, content: String) -> String {
+        // 1. Ambil data notes dari storage
+        let mut notes: Vec<Note> = env
+            .storage()
+            .instance()
+            .get(&NOTE_DATA)
+            .unwrap_or(Vec::new(&env));
+
+        // 2. Pastikan title tidak digunakan oleh note lain
+        for i in 0..notes.len() {
+            let note = notes.get(i).unwrap();
+
+            if note.title == title && note.id != id {
+                return String::from_str(&env, "Notes title tidak boleh sama");
+            }
+        }
+
+        // 3. Cari note berdasarkan id lalu update
+        for i in 0..notes.len() {
+            let mut note = notes.get(i).unwrap();
+
+            if note.id == id {
+                note.title = title;
+                note.content = content;
+
+                notes.set(i, note);
+
+                env.storage().instance().set(&NOTE_DATA, &notes);
+
+                return String::from_str(&env, "Notes berhasil diupdate");
+            }
+        }
+
+        // 4. Jika id tidak ditemukan
+        String::from_str(&env, "Notes tidak ditemukan")
+    }
+
     // Fungsi untuk membuat note baru
     pub fn create_note(env: Env, title: String, content: String) -> String {
         // 1. Ambil data notes dari storage
