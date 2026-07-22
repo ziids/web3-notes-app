@@ -5,7 +5,10 @@ members = [
 ]
 
 [workspace.dependencies]
-soroban-sdk = "25"
+soroban-sdk = "22.0.0"
+
+[patch.crates-io]
+ethnum = { git = "https://github.com/nlordell/ethnum-rs", tag = "v1.5.3" }
 
 [profile.release]
 opt-level = "z"

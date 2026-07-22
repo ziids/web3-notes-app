@@ -1,0 +1,5 @@
+D:\Scripts\web3-notes-app\target\release\build\serde_json-4d5f19433880bf3d\build_script_build-4d5f19433880bf3d.d: C:\Users\Yazid\ Yusuf\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_json-1.0.151\build.rs
+
+D:\Scripts\web3-notes-app\target\release\build\serde_json-4d5f19433880bf3d\build_script_build-4d5f19433880bf3d.exe: C:\Users\Yazid\ Yusuf\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_json-1.0.151\build.rs
+
+C:\Users\Yazid\ Yusuf\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_json-1.0.151\build.rs:
