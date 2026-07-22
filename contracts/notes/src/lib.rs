@@ -25,23 +25,35 @@ impl NotesContract {
 
     // Fungsi untuk membuat note baru
     pub fn create_note(env: Env, title: String, content: String) -> String {
-        // 1. ambil data notes dari storage
-        let mut notes: Vec<Note> = env.storage().instance().get(&NOTE_DATA).unwrap_or(Vec::new(&env));
-        
-        // 2. Buat object note baru
+        // 1. Ambil data notes dari storage
+        let mut notes: Vec<Note> = env
+            .storage()
+            .instance()
+            .get(&NOTE_DATA)
+            .unwrap_or(Vec::new(&env));
+
+        // 2. Cek apakah title sudah ada
+        for i in 0..notes.len() {
+            if notes.get(i).unwrap().title == title {
+                return String::from_str(&env, "Notes title tidak boleh sama");
+            }
+        }
+
+        // 3. Buat object note baru
         let note = Note {
             id: env.prng().gen::<u64>(),
-            title: title,
-            content: content,
+            title,
+            content,
         };
-        
-        // 3. tambahkan note baru ke notes lama
+
+        // 4. Tambahkan note baru
         notes.push_back(note);
-        
-        // 4. simpan notes ke storage
+
+        // 5. Simpan ke storage
         env.storage().instance().set(&NOTE_DATA, &notes);
-        
-        return String::from_str(&env, "Notes berhasil ditambahkan");
+
+        // 6. Berhasil
+        String::from_str(&env, "Notes berhasil ditambahkan")
     }
 
     // Fungsi untuk menghapus notes berdasarkan id
@@ -59,7 +71,8 @@ impl NotesContract {
             }
         }
 
-        return String::from_str(&env, "Notes tidak ditemukan")
+        // 3. ketika notes tidak ditemukan
+        return String::from_str(&env, "Notes tidak ditemukan");
     }
 }
 
